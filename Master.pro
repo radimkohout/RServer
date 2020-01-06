@@ -1,6 +1,6 @@
 TEMPLATE = subdirs
 SUBDIRS += \
+           Qt-Secret \
            RServer \
-          Qt-Secret \
-
+          
 youProjectFolder.file = RServer/RServer.pro
