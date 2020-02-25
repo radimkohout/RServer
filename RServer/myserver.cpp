@@ -34,21 +34,27 @@ void MyServer::onReadyRead()
 {
     QTcpSocket* sender = static_cast<QTcpSocket*>(QObject::sender());
     QByteArray datas = sender->readAll();
-  //  for (QTcpSocket* socket : _sockets) {
         if (nullptr != sender){
         QString a = QString::fromStdString(datas.toStdString());
         QString com = a.mid(0,3);
         //41
-        //sender->write(QByteArray::fromStdString(/*sender->peerAddress().toString().toStdString() + ": " +*/ a.mid(0,3).toStdString()));
-        //sender->write(QByteArray::fromStdString(com.toStdString()));
         if(com == "/k/"){
-          QFile key(QStandardPaths::writableLocation(QStandardPaths::HomeLocation)+"/.Rserver/key.pub");
-          key.open(QIODevice::ReadWrite);
-          QByteArray b = key.readAll();
-          sender->write(b);
+            if(a.length() > 3){
+                //ulož si klíč
+                //bez něj end to end nemůže fungovat
+                qDebug()<<a.mid(3,a.length()-3);
+                QByteArray cpub = a.mid(3,a.length()-3).toUtf8();
+            }
+            else{
+                Ssl l;
+                l.Load();
+                qDebug()<<l.Pub().toBase64();
+                sender->write(l.Pub().toBase64());
+            }
         }
         else if (com=="/g/"){
            //pošli
+            sender->write("");
         }
         else if (com=="/s/") {
            //ulož ke zpracování
@@ -62,7 +68,6 @@ void MyServer::onReadyRead()
         //sender->write("SA");
         sender->flush();
         sender->waitForBytesWritten(5000);
-        sender->close();
+       // sender->close();
     }
 }
-//}
