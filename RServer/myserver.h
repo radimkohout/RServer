@@ -8,11 +8,12 @@
 #include <QString>
 #include <QFile>
 #include <QStandardPaths>
+#include <ssl.h>
 class MyServer : public QObject
 {
     Q_OBJECT
 public:
-    explicit MyServer(QObject *parent = 0);
+    explicit MyServer(QObject *parent = nullptr);
     
 signals:
     

@@ -5,9 +5,9 @@
 #-------------------------------------------------
 
 QT       += core gui
-
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 QT += network
+QT += sql
 TARGET = RServer
 TEMPLATE = app
 
@@ -29,11 +29,13 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
         myserver.cpp \
+        pooler.cpp \
         ssl.cpp
 
 HEADERS += \
         mainwindow.h \
         myserver.h \
+        pooler.h \
         ssl.h
 
 FORMS += \
