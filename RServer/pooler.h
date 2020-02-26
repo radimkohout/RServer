@@ -13,7 +13,7 @@ public:
     Pooler();
     QDir d;
     QByteArray getData(qint32 type, qint32 count);
-    void receiveData();
+    void receiveData(QByteArray data);
 };
 
 #endif // POOLER_H
