@@ -8,7 +8,7 @@ QDir(s).mkpath(s);
 }
 QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
 if(!db.open()){
- qDebug()<<"sheize";
+ qDebug()<<"Database opening error";
  exit(1);
 }
 db.open();
@@ -16,6 +16,6 @@ QSqlQuery qsq;
 if(qsq.exec("SELECT * FROM data where completation = 0")){
 qDebug()<<"Yes, we did it.";
 }else{
-    qDebug()<<"Fuck off";
+    qDebug()<<"SELECT query failed";
 }
 }
