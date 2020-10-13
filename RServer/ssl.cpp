@@ -16,7 +16,7 @@ void Ssl::GenKey(){
       if (!dir.exists()){
       dir.mkpath(".");
       }else{
-          qDebug()<<"KURVA";
+          //qDebug()<<"";
       }
      QString fpri=QStandardPaths::writableLocation(QStandardPaths::HomeLocation)+"/.Rserver/key.pri";
       if ( e.save(fpri, priv) )
